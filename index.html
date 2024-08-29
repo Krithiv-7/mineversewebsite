@@ -106,7 +106,7 @@
 
         .overlay-text {
             position: fixed;
-            top: 20px; /* Adjusted to move higher up on the page */
+            bottom: 80px; /* Position above the IP bar */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -126,7 +126,7 @@
 
         .ip-bar {
             position: fixed;
-            top: 70px; /* Adjusted to move higher up on the page */
+            bottom: 40px; /* Position above the footer text */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -145,7 +145,7 @@
 
         .footer-text {
             position: fixed;
-            bottom: 10px;
+            bottom: 10px; /* Ensure footer text is at the bottom */
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -155,8 +155,8 @@
             border-radius: 5px;
             z-index: 2; /* Ensure it is above other content */
             box-sizing: border-box;
-            max-width: calc(100% - 20px);
             text-align: center;
+            max-width: calc(100% - 20px);
         }
 
         @media (max-width: 768px) {
@@ -170,18 +170,20 @@
             }
 
             .ip-bar {
+                bottom: 10px; /* Adjust for mobile view */
                 font-size: 14px;
                 padding: 8px 16px;
             }
 
             .footer-text {
-                font-size: 8px; /* Even smaller font size for mobile */
+                font-size: 8px; /* Smaller font size for mobile */
                 padding: 4px;
+                max-width: calc(100% - 20px);
             }
 
             .overlay-text {
                 font-size: 14px;
-                top: 10px; /* Adjust for mobile view */
+                bottom: 60px; /* Adjust for mobile view */
                 padding: 8px 16px;
             }
         }
