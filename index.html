@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Video with Menu and IP Copy Feature</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-container {
+            position: fixed; /* Fixed to cover the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Ensure the video is behind all other content */
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire area */
+        }
+
+        .image-fallback {
+            position: fixed; /* Fixed to cover the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            z-index: 1; /* Ensure the image is above the video */
+            transition: opacity 1s ease-in-out; /* Smooth fade effect */
+        }
+
+        .image1 {
+            background: url('preload.jpg') no-repeat center center;
+        }
+
+        .image2 {
+            background: url('postload2.jpg') no-repeat center center;
+            display: none; /* Initially hidden */
+        }
+
+        .fade {
+            opacity: 0;
+        }
+
+        .fade-in {
+            opacity: 1;
+        }
+
+        /* Menu bar styles */
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 2; /* Ensure menu is above the video and images */
+            box-sizing: border-box;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px; /* Adjust logo size as needed */
+            width: auto; /* Maintain aspect ratio */
+        }
+
+        .menu-items {
+            display: flex;
+            gap: 20px;
+            font-size: 16px;
+            margin-left: auto; /* Push menu items to the right */
+        }
+
+        .menu-items a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu-items a:hover {
+            color: #ffcc00; /* Highlight color */
+        }
+
+        /* Floating IP bar styles */
+        .ip-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2; /* Ensure it is above the video and images */
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .ip-bar:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateX(-50%) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="background-video" muted playsinline>
+            <source src="postload.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="fallback-images" class="image-fallback image1"></div>
+        <div id="fallback-images2" class="image-fallback image2"></div>
+    </div>
+
+    <div class="menu-bar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="menu-items">
+            <a href="#">Play</a>
+            <a href="#">Community</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <div class="ip-bar" id="ip-bar">
+        IP: PLAY.MINEVERSE.IN
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('background-video');
+            const fallbackImage1 = document.querySelector('.image1');
+            const fallbackImage2 = document.querySelector('.image2');
+            const ipBar = document.getElementById('ip-bar');
+
+            let isImage1 = true;
+
+            function handleVideoLoop() {
+                video.style.display = 'none'; // Hide the video element
+
+                // Start the image fade loop
+                setInterval(() => {
+                    if (isImage1) {
+                        fallbackImage1.classList.add('fade');
+                        fallbackImage2.classList.remove('fade');
+                        fallbackImage2.classList.add('fade-in');
+                    } else {
+                        fallbackImage2.classList.add('fade');
+                        fallbackImage1.classList.remove('fade');
+                        fallbackImage1.classList.add('fade-in');
+                    }
+                    isImage1 = !isImage1;
+                }, 5000); // Change images every 5 seconds
+
+                // Initially show the first image
+                fallbackImage1.classList.remove('fade');
+                fallbackImage1.classList.add('fade-in');
+            }
+
+            function resetVideo() {
+                // Reset video to play again after 10 seconds
+                setTimeout(() => {
+                    video.style.display = 'block'; // Show video
+                    video.play(); // Play video
+                    fallbackImage1.style.display = 'none'; // Hide fallback images
+                    fallbackImage2.style.display = 'none';
+                }, 10000); // Wait 10 seconds
+            }
+
+            // Ensure the video starts playing once it's fully loaded
+            video.addEventListener('canplaythrough', () => {
+                video.play(); // Explicitly play the video
+                document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
+            });
+
+            // Handle potential issues if the video does not load
+            video.addEventListener('error', handleVideoLoop);
+
+            // Handle video end event
+            video.addEventListener('ended', () => {
+                fallbackImage2.style.display = 'block'; // Show second fallback image
+                resetVideo(); // Reset video after 10 seconds
+            });
+
+            // Copy IP address to clipboard on click
+            ipBar.addEventListener('click', () => {
+                navigator.clipboard.writeText('play.mineverse.in').then(() => {
+                    alert('IP address copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy IP address: ', err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
