@@ -111,7 +111,7 @@
 
         .overlay-text {
             position: fixed;
-            bottom: 80px; /* Adjust to position above the IP bar */
+            bottom: 120px; /* Increased space from the bottom for mobile */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -131,7 +131,7 @@
 
         .ip-bar {
             position: fixed;
-            bottom: 40px; /* Position above the footer text */
+            bottom: 70px; /* Increased space from the bottom for mobile */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -150,7 +150,7 @@
 
         .footer-text {
             position: fixed;
-            bottom: 10px; /* Ensure footer text is at the bottom */
+            bottom: 20px; /* Ensure footer text is at the bottom but with more space above IP bar */
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -175,7 +175,7 @@
             }
 
             .ip-bar {
-                bottom: 30px; /* Adjust for mobile view */
+                bottom: 70px; /* Adjust for mobile view */
                 font-size: 14px;
                 padding: 8px 16px;
             }
@@ -183,13 +183,13 @@
             .footer-text {
                 font-size: 8px; /* Smaller font size for mobile */
                 padding: 4px;
-                bottom: 15px; /* Position footer text above IP bar */
+                bottom: 20px; /* Position footer text above IP bar */
                 max-width: calc(100% - 20px);
             }
 
             .overlay-text {
                 font-size: 14px;
-                bottom: 50px; /* Adjust for mobile view */
+                bottom: 130px; /* Adjust for mobile view */
                 padding: 8px 16px;
             }
         }
