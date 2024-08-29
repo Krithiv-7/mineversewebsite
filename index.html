@@ -48,6 +48,7 @@
             background-repeat: no-repeat;
             z-index: 0; /* Ensure it's below menu and IP bar */
             display: none; /* Hide by default */
+            background-color: black; /* Fallback color for better visibility */
         }
 
         .image1 {
@@ -130,7 +131,7 @@
 
         .ip-bar {
             position: fixed;
-            bottom: 40px; /* Position above the footer text */
+            bottom: 40px; /* Adjust for mobile view */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -149,7 +150,7 @@
 
         .footer-text {
             position: fixed;
-            bottom: 10px; /* Ensure footer text is at the bottom */
+            bottom: 20px; /* Ensure footer text is at the bottom with more space from IP */
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -174,7 +175,7 @@
             }
 
             .ip-bar {
-                bottom: 10px; /* Adjust for mobile view */
+                bottom: 30px; /* Adjust for mobile view */
                 font-size: 14px;
                 padding: 8px 16px;
             }
@@ -182,6 +183,7 @@
             .footer-text {
                 font-size: 8px; /* Smaller font size for mobile */
                 padding: 4px;
+                bottom: 15px; /* Position footer text above IP bar */
                 max-width: calc(100% - 20px);
             }
 
@@ -224,7 +226,7 @@
     </div>
 
     <div class="footer-text">
-        All the Abstract shown are from Official Minecraft Sources. We are not affiliated with Mojang Studios or Microsoft!
+        All the Abstract Shown In the Website is from Official Minecraft Sources, We are not affiliated with Mojang Studios or Microsoft
     </div>
 
     <script>
@@ -234,6 +236,7 @@
             const fallbackImage2 = document.querySelector('.image2');
             const fallbackImage3 = document.querySelector('.image3');
             const ipBar = document.getElementById('ip-bar');
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
             let currentState = 'video';
 
@@ -247,8 +250,8 @@
                 document.querySelector(`.${imageClass}`).style.display = 'block';
             }
 
-            function handleVideoLoop() {
-                // Switch between different states
+            function handleImageLoop() {
+                // Switch between different states for mobile
                 if (currentState === 'video') {
                     video.style.display = 'none'; // Hide video
                     showFallbackImage('image2'); // Show postload2.jpg
@@ -270,14 +273,31 @@
             }
 
             function checkVideoLoad() {
-                video.addEventListener('canplaythrough', () => {
-                    video.style.display = 'block'; // Show video
-                    video.play(); // Explicitly play the video
-                    document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
-                });
+                if (!isMobile) {
+                    video.addEventListener('canplaythrough', () => {
+                        video.style.display = 'block'; // Show video
+                        video.play(); // Explicitly play the video
+                        document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
+                    });
 
-                video.addEventListener('error', handleVideoLoop);
-                video.addEventListener('ended', handleVideoLoop);
+                    video.addEventListener('error', handleImageLoop);
+                    video.addEventListener('ended', handleImageLoop);
+                } else {
+                    // For mobile devices, handle only image looping
+                    showFallbackImage('image1');
+                    setInterval(() => {
+                        if (currentState === 'preload') {
+                            showFallbackImage('image2');
+                            currentState = 'postload2';
+                        } else if (currentState === 'postload2') {
+                            showFallbackImage('image3');
+                            currentState = 'postload3';
+                        } else if (currentState === 'postload3') {
+                            showFallbackImage('image1');
+                            currentState = 'preload';
+                        }
+                    }, 5000); // 5 seconds for each image
+                }
             }
 
             checkVideoLoad();
