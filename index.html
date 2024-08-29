@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Video with Menu and IP Copy Feature</title>
+    <title>MineVerse | Join - Survive - Repeat</title>
     <style>
         body, html {
             margin: 0;
@@ -31,6 +31,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: none; /* Hide by default until loaded */
         }
 
         .image-fallback {
@@ -42,7 +43,6 @@
             background-size: cover;
             background-position: center;
             z-index: 1;
-            transition: opacity 1s ease-in-out;
             display: none; /* Hide by default */
         }
 
@@ -52,7 +52,6 @@
 
         .image2 {
             background: url('postload2.jpg') no-repeat center center;
-            display: none; /* Initially hidden */
         }
 
         .fade {
@@ -173,8 +172,32 @@
 
             function handleVideoLoop() {
                 video.style.display = 'none'; // Hide the video element
+                fallbackImage1.style.display = 'none'; // Hide first image initially
+                fallbackImage2.style.display = 'block'; // Show second image
+                fallbackImage2.classList.remove('fade');
+                fallbackImage2.classList.add('fade-in');
 
-                // Start the image fade loop
+                // Reset video to play again after 10 seconds
+                setTimeout(() => {
+                    fallbackImage2.style.display = 'none'; // Hide second image
+                    video.style.display = 'block'; // Show video
+                    video.play(); // Play video
+                }, 10000); // Wait 10 seconds
+            }
+
+            function checkVideoLoad() {
+                video.addEventListener('canplaythrough', () => {
+                    video.style.display = 'block'; // Show video
+                    video.play(); // Explicitly play the video
+                    document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
+                });
+
+                video.addEventListener('error', handleVideoLoop);
+                video.addEventListener('ended', handleVideoLoop);
+            }
+
+            function handleFallbackImages() {
+                // Fallback image loop if video cannot load
                 setInterval(() => {
                     if (isImage1) {
                         fallbackImage1.classList.add('fade');
@@ -189,36 +212,13 @@
                 }, 5000); // Change images every 5 seconds
 
                 // Initially show the first image
+                fallbackImage1.style.display = 'block'; // Ensure it's visible initially
                 fallbackImage1.classList.remove('fade');
                 fallbackImage1.classList.add('fade-in');
             }
 
-            function resetVideo() {
-                // Reset video to play again after 10 seconds
-                setTimeout(() => {
-                    video.style.display = 'block'; // Show video
-                    video.play(); // Play video
-                    fallbackImage1.style.display = 'none'; // Hide fallback images
-                    fallbackImage2.style.display = 'none';
-                }, 10000); // Wait 10 seconds
-            }
-
-            // Ensure the video starts playing once it's fully loaded
-            video.addEventListener('canplaythrough', () => {
-                video.play(); // Explicitly play the video
-                document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
-            });
-
-            // Handle potential issues if the video does not load
-            video.addEventListener('error', handleVideoLoop);
-
-            // Handle video end event
-            video.addEventListener('ended', () => {
-                fallbackImage2.style.display = 'block'; // Show second fallback image
-                fallbackImage2.classList.remove('fade');
-                fallbackImage2.classList.add('fade-in');
-                resetVideo(); // Reset video after 10 seconds
-            });
+            checkVideoLoad();
+            handleFallbackImages();
 
             // Copy IP address to clipboard on click
             ipBar.addEventListener('click', () => {
