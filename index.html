@@ -58,6 +58,10 @@
             background-image: url('postload2.jpg');
         }
 
+        .image3 {
+            background-image: url('postload3.jpg');
+        }
+
         .fade {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -197,6 +201,7 @@
         </video>
         <div id="fallback-images" class="image-fallback image1"></div>
         <div id="fallback-images2" class="image-fallback image2"></div>
+        <div id="fallback-images3" class="image-fallback image3"></div>
     </div>
 
     <div class="menu-bar">
@@ -227,23 +232,41 @@
             const video = document.getElementById('background-video');
             const fallbackImage1 = document.querySelector('.image1');
             const fallbackImage2 = document.querySelector('.image2');
+            const fallbackImage3 = document.querySelector('.image3');
             const ipBar = document.getElementById('ip-bar');
 
-            let isImage1 = true;
+            let currentState = 'video';
+
+            function showFallbackImage(imageClass) {
+                // Hide all images
+                fallbackImage1.style.display = 'none';
+                fallbackImage2.style.display = 'none';
+                fallbackImage3.style.display = 'none';
+
+                // Show the specified image
+                document.querySelector(`.${imageClass}`).style.display = 'block';
+            }
 
             function handleVideoLoop() {
-                video.style.display = 'none'; // Hide the video element
-                fallbackImage1.style.display = 'none'; // Hide first image initially
-                fallbackImage2.style.display = 'block'; // Show second image
-                fallbackImage2.classList.remove('fade');
-                fallbackImage2.classList.add('fade-in');
-
-                // Reset video to play again after 10 seconds
-                setTimeout(() => {
-                    fallbackImage2.style.display = 'none'; // Hide second image
-                    video.style.display = 'block'; // Show video
-                    video.play(); // Play video
-                }, 10000); // Wait 10 seconds
+                // Switch between different states
+                if (currentState === 'video') {
+                    video.style.display = 'none'; // Hide video
+                    showFallbackImage('image2'); // Show postload2.jpg
+                    currentState = 'postload2';
+                    setTimeout(() => {
+                        showFallbackImage('image3'); // Show postload3.jpg
+                        currentState = 'postload3';
+                        setTimeout(() => {
+                            showFallbackImage('image1'); // Show preload.jpg
+                            currentState = 'preload';
+                            setTimeout(() => {
+                                video.style.display = 'block'; // Show video
+                                video.play(); // Play video
+                                currentState = 'video';
+                            }, 5000); // 5 seconds for preload image
+                        }, 5000); // 5 seconds for postload3 image
+                    }, 5000); // 5 seconds for postload2 image
+                }
             }
 
             function checkVideoLoad() {
@@ -257,29 +280,7 @@
                 video.addEventListener('ended', handleVideoLoop);
             }
 
-            function handleFallbackImages() {
-                // Fallback image loop if video cannot load
-                setInterval(() => {
-                    if (isImage1) {
-                        fallbackImage1.classList.add('fade');
-                        fallbackImage2.classList.remove('fade');
-                        fallbackImage2.classList.add('fade-in');
-                    } else {
-                        fallbackImage2.classList.add('fade');
-                        fallbackImage1.classList.remove('fade');
-                        fallbackImage1.classList.add('fade-in');
-                    }
-                    isImage1 = !isImage1;
-                }, 5000); // Change images every 5 seconds
-
-                // Initially show the first image
-                fallbackImage1.style.display = 'block'; // Ensure it's visible initially
-                fallbackImage1.classList.remove('fade');
-                fallbackImage1.classList.add('fade-in');
-            }
-
             checkVideoLoad();
-            handleFallbackImages();
 
             // Copy IP address to clipboard on click
             ipBar.addEventListener('click', () => {
