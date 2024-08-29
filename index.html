@@ -11,16 +11,17 @@
             height: 100%;
             overflow: hidden;
             position: relative;
+            font-family: Arial, sans-serif;
         }
 
         .video-container {
-            position: fixed; /* Fixed to cover the entire viewport */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: -1; /* Ensure the video is behind all other content */
+            z-index: -1;
         }
 
         video {
@@ -29,18 +30,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the video covers the entire area */
+            object-fit: cover;
         }
 
         .image-fallback {
-            position: fixed; /* Fixed to cover the entire viewport */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-size: cover;
-            z-index: 1; /* Ensure the image is above the video */
-            transition: opacity 1s ease-in-out; /* Smooth fade effect */
+            background-position: center;
+            z-index: 1;
+            transition: opacity 1s ease-in-out;
+            display: none; /* Hide by default */
         }
 
         .image1 {
@@ -60,37 +63,31 @@
             opacity: 1;
         }
 
-        /* Menu bar styles */
         .menu-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            z-index: 2; /* Ensure menu is above the video and images */
+            z-index: 2;
             box-sizing: border-box;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
         .logo img {
-            height: 40px; /* Adjust logo size as needed */
-            width: auto; /* Maintain aspect ratio */
+            height: 40px;
+            width: auto;
         }
 
         .menu-items {
             display: flex;
             gap: 20px;
             font-size: 16px;
-            margin-left: auto; /* Push menu items to the right */
+            margin-left: auto;
         }
 
         .menu-items a {
@@ -100,10 +97,9 @@
         }
 
         .menu-items a:hover {
-            color: #ffcc00; /* Highlight color */
+            color: #ffcc00;
         }
 
-        /* Floating IP bar styles */
         .ip-bar {
             position: fixed;
             bottom: 20px;
@@ -114,13 +110,30 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            z-index: 2; /* Ensure it is above the video and images */
+            z-index: 2;
             transition: background 0.3s, transform 0.3s;
         }
 
         .ip-bar:hover {
             background: rgba(0, 0, 0, 0.9);
             transform: translateX(-50%) scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .menu-bar {
+                padding: 10px;
+            }
+
+            .menu-items {
+                gap: 10px;
+                font-size: 14px;
+            }
+
+            .ip-bar {
+                bottom: 10px;
+                font-size: 14px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -202,6 +215,8 @@
             // Handle video end event
             video.addEventListener('ended', () => {
                 fallbackImage2.style.display = 'block'; // Show second fallback image
+                fallbackImage2.classList.remove('fade');
+                fallbackImage2.classList.add('fade-in');
                 resetVideo(); // Reset video after 10 seconds
             });
 
