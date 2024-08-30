@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with the MineVerse team. Contact us for support, feedback, or inquiries about our Minecraft community.">
+    <title>MineVerse | Contact</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-y: auto; 
+            font-family: Arial, sans-serif;
+            padding-bottom: 40px;
+        }
+
+        .image-fallback {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0; 
+            display: none; 
+            background-color: black;
+        }
+
+        .image1 {
+            background-image: url('preload.jpg');
+        }
+
+        .image2 {
+            background-image: url('postload2.jpg');
+        }
+
+        .image3 {
+            background-image: url('postload3.jpg');
+        }
+
+        .menu-bar {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .menu-items {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .menu-items a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu-items a:hover, .menu-items .active {
+            color: #ffcc00;
+        }
+
+        .menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 3;
+            min-width: 200px;
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .menu-dropdown a:hover {
+            background: #ffcc00;
+            color: black;
+        }
+
+        .menu-bar .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hero-section {
+            background: url('contact-hero.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-form, .social-contact {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            flex: 1;
+        }
+
+        .social-contact {
+            max-width: 300px;
+            flex: 1;
+        }
+
+        .contact-form h2, .social-contact h2 {
+            margin-top: 0;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #e6b800;
+        }
+
+        .social-contact p {
+            margin: 10px 0;
+        }
+
+        .social-contact a {
+            color: #ffcc00;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .social-contact a:hover {
+            color: #e6b800;
+        }
+
+        .social-contact i {
+            margin-right: 8px;
+        }
+
+        .community-button {
+            background: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .community-button:hover {
+            background: #e6b800;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #ccc;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            body, html {
+                overflow-y: auto; 
+            }
+
+            .menu-bar {
+                padding: 10px;
+            }
+
+            .menu-items {
+                display: none; 
+                flex-direction: column;
+                gap: 0;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                border-radius: 5px;
+                width: 200px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .menu-items.active {
+                display: flex; 
+            }
+
+            .menu-items a {
+                padding: 15px;
+            }
+
+            .menu-bar .menu-toggle {
+                display: block;
+                color: white;
+                cursor: pointer;
+            }
+
+            .footer-text {
+                font-size: 8px;
+                padding: 4px;
+                bottom: 0; 
+            }
+
+            .hero-section {
+                padding: 80px 10px;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-form {
+                margin-top: 20px;
+                width: 100%;
+            }
+
+            .social-contact {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image-fallback image1"></div>
+    <div class="image-fallback image2"></div>
+    <div class="image-fallback image3"></div>
+
+    <div class="menu-bar">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="MineVerse Logo">
+        </a>
+        <div class="menu-items">
+            <a href="play.html">Play</a>
+            <a href="https://community.mineverse.in" target="_blank" rel="noopener noreferrer">Community</a>
+            <a href="https://store.mineverse.in" target="_blank" rel="noopener noreferrer">Store</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </div>
+
+    <div class="hero-section">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you. Reach out for support, feedback, or inquiries.</p>
+        <a href="https://community.mineverse.in" class="community-button" target="_blank" rel="noopener noreferrer">Join the Community</a>
+    </div>
+
+    <div class="contact-container">
+        <div class="social-contact">
+            <h2>Connect with Us</h2>
+            <p>Follow us on social media or reach out through other channels:</p>
+            <a href="https://twitter.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="https://facebook.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://instagram.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="mailto:support@mineverse.in"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <form id="contact-form">
+                <input type="text" name="name" id="name" placeholder="Your Name" required>
+                <input type="email" name="email" id="email" placeholder="Your Email" required>
+                <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-text">
+        &copy; 2024 MineVerse. All rights reserved. Official Minecraft Sources. We are not affiliated with Mojang Studios or Microsoft.
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ipBar = document.getElementById('ip-bar');
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+            function showFallbackImage(imageClass) {
+                document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
+                document.querySelector(`.${imageClass}`).style.display = 'block';
+            }
+
+            function handleImageLoop() {
+                const images = ['image1', 'image2', 'image3'];
+                let index = 0;
+
+                function changeImage() {
+                    showFallbackImage(images[index]);
+                    index = (index + 1) % images.length;
+                }
+
+                changeImage(); // Show the first image initially
+                setInterval(changeImage, 30000); // 30 seconds for each image
+            }
+
+            function checkImageLoop() {
+                if (isMobile) {
+                    showFallbackImage('image1');
+                    handleImageLoop();
+                } else {
+                    showFallbackImage('image1');
+                    handleImageLoop();
+                }
+            }
+
+            checkImageLoop();
+
+            ipBar.addEventListener('click', () => {
+                navigator.clipboard.writeText('play.mineverse.in').then(() => {
+                    alert('IP Address copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy IP Address: ', err);
+                });
+            });
+
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuItems = document.querySelector('.menu-items');
+
+            menuToggle.addEventListener('click', () => {
+                menuItems.classList.toggle('active');
+            });
+
+            // Handle form submission
+            document.getElementById('contact-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                const webhookUrl = 'https://discord.com/api/webhooks/1279038300258173000/IlLDl528z641HzDbYf-ZFajsdrXDTTNbi4GoEYqbQyXBOxMjQKBupfxRcMj-NElVi3Ia';
+
+                const payload = {
+                    content: `**New Contact Form Submission**\n**Name:** ${name}\n**Email:** ${email}\n**Message:**\n${message}`
+                };
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Your message has been sent!');
+                    document.getElementById('contact-form').reset();
+                })
+                .catch(error => {
+                    console.error('Error sending message:', error);
+                    alert('Failed to send message. Please try again later.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
