@@ -6,13 +6,71 @@
     <meta name="description" content="Join the epic adventure of MineVerse! Learn how to play, access server information, and get started with our vibrant Minecraft community.">
     <title>MineVerse | Play</title>
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to a common stylesheet if applicable -->
     <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* Hide by default until loaded */
+            pointer-events: none; /* Prevent interactions */
+            background: black; /* Fallback background color */
+        }
+
+        .image-fallback {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover; /* Ensure full coverage */
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0; /* Ensure it's below menu */
+            display: none; /* Hide by default */
+            background-color: black; /* Fallback color for better visibility */
+        }
+
+        .image1 {
+            background-image: url('preload.jpg');
+        }
+
+        .image2 {
+            background-image: url('postload2.jpg');
+        }
+
+        .image3 {
+            background-image: url('postload3.jpg');
+        }
+
+        .fade {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .fade-in {
+            opacity: 1;
         }
 
         .menu-bar {
@@ -23,6 +81,11 @@
             align-items: center;
             justify-content: space-between;
             box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2; /* Ensure it is above other content */
         }
 
         .logo img {
@@ -41,7 +104,7 @@
             transition: color 0.3s;
         }
 
-        .menu-items a:hover {
+        .menu-items a:hover, .menu-items .active {
             color: #ffcc00;
         }
 
@@ -51,6 +114,7 @@
             color: white;
             text-align: center;
             padding: 100px 20px;
+            margin-top: 60px; /* Space for fixed menu */
         }
 
         .hero-section h1 {
@@ -88,16 +152,44 @@
             left: 50%;
             transform: translateX(-50%);
             max-width: calc(100% - 20px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .menu-bar {
+                padding: 10px;
+            }
+
+            .menu-items {
+                gap: 10px;
+                font-size: 14px;
+            }
+
+            .footer-text {
+                font-size: 8px;
+                padding: 4px;
+                bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="video-container">
+        <video id="background-video" muted playsinline disablePictureInPicture>
+            <source src="postload.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="fallback-images" class="image-fallback image1"></div>
+        <div id="fallback-images2" class="image-fallback image2"></div>
+        <div id="fallback-images3" class="image-fallback image3"></div>
+    </div>
+
     <div class="menu-bar">
         <a href="index.html" class="logo">
             <img src="logo.png" alt="MineVerse Logo">
         </a>
         <div class="menu-items">
-            <a href="play.html">Play</a>
+            <a href="play.html" class="active">Play</a>
             <a href="https://community.mineverse.in" target="_blank" rel="noopener noreferrer">Community</a>
             <a href="https://store.mineverse.in" target="_blank" rel="noopener noreferrer">Store</a>
             <a href="contact.html">Contact</a>
@@ -126,5 +218,67 @@
     <div class="footer-text">
         All the assets are from official Minecraft sources. We are not affiliated with Mojang Studios or Microsoft.
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('background-video');
+            const fallbackImage1 = document.querySelector('.image1');
+            const fallbackImage2 = document.querySelector('.image2');
+            const fallbackImage3 = document.querySelector('.image3');
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+            let currentState = 'video';
+
+            function showFallbackImage(imageClass) {
+                // Hide all images
+                fallbackImage1.style.display = 'none';
+                fallbackImage2.style.display = 'none';
+                fallbackImage3.style.display = 'none';
+
+                // Show the specified image
+                document.querySelector(`.${imageClass}`).style.display = 'block';
+            }
+
+            function handleImageLoop() {
+                // Switch between different states for mobile
+                if (currentState === 'video') {
+                    video.style.display = 'none'; // Hide video
+                    showFallbackImage('image2'); // Show postload2.jpg
+                    currentState = 'postload2';
+                    setTimeout(() => {
+                        showFallbackImage('image3'); // Show postload3.jpg
+                        currentState = 'postload3';
+                        setTimeout(() => {
+                            showFallbackImage('image1'); // Show preload.jpg
+                            currentState = 'preload';
+                            setTimeout(() => {
+                                video.style.display = 'block'; // Show video
+                                video.play(); // Play video
+                                currentState = 'video';
+                            }, 5000); // 5 seconds for preload image
+                        }, 5000); // 5 seconds for postload3 image
+                    }, 5000); // 5 seconds for postload2 image
+                }
+            }
+
+            function checkVideoLoad() {
+                if (!isMobile) {
+                    video.addEventListener('canplaythrough', () => {
+                        video.style.display = 'block'; // Show video
+                        video.play(); // Explicitly play the video
+                        document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
+                    });
+
+                    video.addEventListener('error', handleImageLoop);
+                    video.addEventListener('ended', handleImageLoop);
+                } else {
+                    // Handle for mobile devices
+                    showFallbackImage('image1'); // Show preload image initially
+                }
+            }
+
+            checkVideoLoad();
+        });
+    </script>
 </body>
 </html>
