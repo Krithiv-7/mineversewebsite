@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Embark on an epic Minecraft adventure at MineVerse, a vibrant community where the classic game experience is reimagined with crossplay support, allowing players from different platforms to join forces and build, explore, and survive together.">
+    <meta name="description" content="Join the epic adventure of MineVerse! Learn how to play, access server information, and get started with our vibrant Minecraft community.">
     <title>MineVerse | Play</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow-y: auto;
+            overflow-y: auto; 
             font-family: Arial, sans-serif;
         }
 
@@ -48,6 +48,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-sizing: border-box;
             position: fixed;
             top: 0;
             left: 0;
@@ -93,32 +94,38 @@
             padding: 10px;
             color: white;
             text-decoration: none;
+            transition: background 0.3s;
         }
 
         .menu-dropdown a:hover {
-            background: #333;
+            background: #ffcc00;
+            color: black;
         }
 
-        .menu-bar #menu-toggle {
+        .menu-bar .menu-toggle {
             display: none;
+            cursor: pointer;
         }
 
-        .join-adventure {
+        .hero-section {
+            background: url('play-hero.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
             text-align: center;
             padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
+            margin-top: 60px;
             position: relative;
             z-index: 1;
         }
 
-        .join-adventure h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+        .hero-section h1 {
+            font-size: 36px;
+            margin: 0;
         }
 
-        .join-adventure p {
-            font-size: 16px;
+        .hero-section p {
+            font-size: 18px;
+            margin-top: 10px;
         }
 
         .ip-bar {
@@ -127,114 +134,145 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            text-align: center;
-            margin: 20px auto;
+            display: inline-block;
             max-width: 300px;
+            text-align: center;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.3s;
+            margin: 20px auto; 
             position: relative;
             z-index: 1;
         }
 
         .ip-bar:hover {
             background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05); 
         }
 
-        .adventure-boxes {
+        .adventure-session {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s;
+        }
+
+        .adventure-session:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .session-container {
             display: flex;
-            flex-direction: column;
             gap: 20px;
-            align-items: center;
-            padding: 20px;
-            max-width: 100%;
-            box-sizing: border-box;
+            margin: 20px;
+            position: relative;
+            z-index: 1;
+            overflow: auto; 
         }
 
-        .adventure-boxes .box {
-            background: rgba(0, 0, 0, 0.7);
+        .session-box {
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 20px;
-            border-radius: 10px;
             text-align: center;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .adventure-boxes .box img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .footer-text {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            text-align: center;
-            box-sizing: border-box;
+            border-radius: 5px;
+            flex: 1;
+            transition: background 0.3s;
+            position: relative;
             z-index: 1;
         }
 
+        .session-box:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .session-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .session-box .caption {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #ccc;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #ccc;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         @media (max-width: 768px) {
+            body, html {
+                overflow-y: auto; 
+            }
+
             .menu-bar {
                 padding: 10px;
             }
 
             .menu-items {
-                display: none;
-            }
-
-            .menu-bar #menu-toggle {
-                display: block;
-                cursor: pointer;
-            }
-
-            .menu-bar #menu-toggle:after {
-                content: '☰';
-                font-size: 24px;
-            }
-
-            .menu-items.active {
-                display: flex;
+                display: none; 
                 flex-direction: column;
-                background: rgba(0, 0, 0, 0.9);
+                gap: 0;
                 position: absolute;
-                top: 100%;
+                top: 60px;
                 right: 0;
-                width: 100%;
-                min-width: 200px;
+                background: rgba(0, 0, 0, 0.9);
                 border-radius: 5px;
+                width: 200px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             }
 
-            .menu-items.active .menu-dropdown {
-                display: none;
+            .menu-items.active {
+                display: flex; 
             }
 
-            .join-adventure {
-                padding: 80px 10px;
+            .menu-items a {
+                padding: 15px;
             }
 
-            .adventure-boxes {
-                flex-direction: column;
-                overflow-x: auto; /* Allow horizontal scrolling */
-            }
-
-            .adventure-boxes .box {
-                width: 100%;
-            }
-
-            .ip-bar {
-                margin: 20px auto;
-                font-size: 14px;
+            .menu-bar .menu-toggle {
+                display: block;
+                color: white;
+                cursor: pointer;
             }
 
             .footer-text {
-                font-size: 12px;
-                padding: 5px;
-                bottom: 0;
+                font-size: 8px;
+                padding: 4px;
+                bottom: 0; 
+            }
+
+            .hero-section {
+                padding: 80px 10px;
+            }
+
+            .ip-bar {
+                font-size: 14px;
+                padding: 8px 16px;
+                margin: 10px auto;
+            }
+
+            .adventure-session, .session-box {
+                margin: 10px 0;
+            }
+
+            .session-container {
+                flex-direction: column;
+                overflow: auto; 
             }
         }
     </style>
@@ -245,34 +283,37 @@
     <div class="image-fallback image3"></div>
 
     <div class="menu-bar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo"></a>
-        </div>
-        <div id="menu-toggle"></div>
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="MineVerse Logo">
+        </a>
         <div class="menu-items">
             <a href="play.html" class="active">Play</a>
-            <a href="https://community.mineverse.in" target="_blank">Community</a>
+            <a href="https://community.mineverse.in" target="_blank" rel="noopener noreferrer">Community</a>
+            <a href="https://store.mineverse.in" target="_blank" rel="noopener noreferrer">Store</a>
             <a href="contact.html">Contact</a>
-            <a href="https://store.mineverse.in" target="_blank">Store</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </div>
+
+    <div class="hero-section">
+        <h1>Join the Adventure!</h1>
+        <p>Discover the excitement of MineVerse. Get started and be part of our epic Minecraft community.</p>
+        <div class="ip-bar" id="ip-bar">
+            IP: PLAY.MINEVERSE.IN
         </div>
     </div>
 
-    <div class="join-adventure">
-        <h2>Join the Adventure!</h2>
-        <p>Explore the world of MineVerse and experience Minecraft like never before.</p>
+    <div class="adventure-session">
+        <h2>Join the Adventure</h2>
     </div>
 
-    <div class="ip-bar" id="ip-bar">
-        IP: PLAY.MINEVERSE.IN
-    </div>
-
-    <div class="adventure-boxes">
-        <div class="box">
+    <div class="session-container">
+        <div class="session-box">
             <h3>For Java</h3>
             <p>Explore the world of Minecraft Java Edition with our custom server settings and mods!</p>
             <img src="javaclient.png" alt="Java Client">
         </div>
-        <div class="box">
+        <div class="session-box">
             <h3>For Bedrock</h3>
             <p>Join the Minecraft Bedrock Edition community and experience unique crossplay features!</p>
             <img src="bedrockclient.png" alt="Bedrock Client">
@@ -294,39 +335,42 @@
             }
 
             function handleImageLoop() {
-                let currentState = 'image1';
-                setInterval(() => {
-                    if (currentState === 'image1') {
-                        showFallbackImage('image2');
-                        currentState = 'image2';
-                    } else if (currentState === 'image2') {
-                        showFallbackImage('image3');
-                        currentState = 'image3';
-                    } else {
-                        showFallbackImage('image1');
-                        currentState = 'image1';
-                    }
-                }, 30000); // Change image every 30 seconds
+                const images = ['image1', 'image2', 'image3'];
+                let index = 0;
+
+                function changeImage() {
+                    showFallbackImage(images[index]);
+                    index = (index + 1) % images.length;
+                }
+
+                changeImage(); // Show the first image initially
+                setInterval(changeImage, 30000); // 30 seconds for each image
             }
 
-            handleImageLoop();
+            function checkImageLoop() {
+                if (isMobile) {
+                    showFallbackImage('image1');
+                    handleImageLoop();
+                } else {
+                    showFallbackImage('image1');
+                    handleImageLoop();
+                }
+            }
+
+            checkImageLoop();
 
             ipBar.addEventListener('click', () => {
                 navigator.clipboard.writeText('play.mineverse.in').then(() => {
-                    alert('IP address copied to clipboard!');
+                    alert('IP Address copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy IP Address: ', err);
                 });
             });
 
-            // Adjust IP Bar position for mobile
-            if (isMobile) {
-                ipBar.style.fontSize = '14px';
-                ipBar.style.marginTop = '10px';
-                ipBar.style.textAlign = 'center';
-            }
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuItems = document.querySelector('.menu-items');
 
-            // Mobile menu toggle
-            document.getElementById('menu-toggle').addEventListener('click', () => {
-                const menuItems = document.querySelector('.menu-items');
+            menuToggle.addEventListener('click', () => {
                 menuItems.classList.toggle('active');
             });
         });
