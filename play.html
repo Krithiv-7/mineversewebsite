@@ -186,6 +186,7 @@
             margin: 20px;
             position: relative;
             z-index: 1;
+            overflow: hidden;
         }
 
         .session-box {
@@ -204,11 +205,17 @@
             background: rgba(0, 0, 0, 0.9);
         }
 
-        .session-box:nth-of-type(1) {
-            margin-right: 10px;
+        .session-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
 
         @media (max-width: 768px) {
+            body, html {
+                overflow-y: auto; 
+            }
+
             .menu-bar {
                 padding: 10px;
             }
@@ -262,6 +269,7 @@
 
             .session-container {
                 flex-direction: column;
+                overflow: hidden;
             }
         }
     </style>
@@ -299,16 +307,16 @@
     <div class="session-container">
         <div class="session-box">
             <h3>For Java</h3>
-            <p>Explore the world of Minecraft Java Edition with our custom server settings and mods!</p>
+            <img src="javaclient.png" alt="Java Client">
         </div>
         <div class="session-box">
             <h3>For Bedrock</h3>
-            <p>Join the Minecraft Bedrock Edition community and experience unique crossplay features!</p>
+            <img src="bedrockclient.png" alt="Bedrock Client">
         </div>
     </div>
 
     <div class="footer-text">
-        All the assets are from Official Minecraft Sources. We are not affiliated with Mojang Studios or Microsoft.
+        &copy; 2024 MineVerse. All rights reserved. Official Minecraft Sources. We are not affiliated with Mojang Studios or Microsoft.
     </div>
 
     <script>
@@ -317,9 +325,7 @@
             const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
             function showFallbackImage(imageClass) {
-                // Hide all images
                 document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
-                // Show the specified image
                 document.querySelector(`.${imageClass}`).style.display = 'block';
             }
 
@@ -338,11 +344,9 @@
 
             function checkImageLoop() {
                 if (isMobile) {
-                    // For mobile devices, handle only image looping
                     showFallbackImage('image1');
                     handleImageLoop();
                 } else {
-                    // For non-mobile devices, handle image looping
                     showFallbackImage('image1');
                     handleImageLoop();
                 }
@@ -350,7 +354,6 @@
 
             checkImageLoop();
 
-            // Copy IP address to clipboard on click
             ipBar.addEventListener('click', () => {
                 navigator.clipboard.writeText('play.mineverse.in').then(() => {
                     alert('IP Address copied to clipboard!');
@@ -359,7 +362,6 @@
                 });
             });
 
-            // Toggle menu visibility on mobile
             const menuToggle = document.getElementById('menu-toggle');
             const menuItems = document.querySelector('.menu-items');
 
