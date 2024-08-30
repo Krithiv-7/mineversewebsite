@@ -127,6 +127,26 @@
             margin-top: 10px;
         }
 
+        .ip-bar {
+            position: relative;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: inline-block;
+            max-width: 300px;
+            text-align: center;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .ip-bar:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.05); /* Scale up slightly */
+        }
+
         .footer-text {
             background: rgba(0, 0, 0, 0.6);
             color: white;
@@ -155,6 +175,15 @@
                 font-size: 8px;
                 padding: 4px;
                 bottom: 20px;
+            }
+
+            .hero-section {
+                padding: 80px 10px;
+            }
+
+            .ip-bar {
+                font-size: 14px;
+                padding: 8px 16px;
             }
         }
     </style>
@@ -187,6 +216,10 @@
         <p>Discover the excitement of MineVerse. Get started and be part of our epic Minecraft community.</p>
     </div>
 
+    <div class="ip-bar" id="ip-bar">
+        IP: PLAY.MINEVERSE.IN
+    </div>
+
     <div class="footer-text">
         All the assets are from official Minecraft sources. We are not affiliated with Mojang Studios or Microsoft.
     </div>
@@ -197,6 +230,7 @@
             const fallbackImage1 = document.querySelector('.image1');
             const fallbackImage2 = document.querySelector('.image2');
             const fallbackImage3 = document.querySelector('.image3');
+            const ipBar = document.getElementById('ip-bar');
             const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
             let currentState = 'video';
@@ -250,6 +284,15 @@
             }
 
             checkVideoLoad();
+
+            // Copy IP address to clipboard
+            ipBar.addEventListener('click', () => {
+                navigator.clipboard.writeText('play.mineverse.in').then(() => {
+                    alert('IP Address copied to clipboard!');
+                }, (err) => {
+                    alert('Failed to copy IP Address.');
+                });
+            });
         });
     </script>
 </body>
