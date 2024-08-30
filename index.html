@@ -117,7 +117,7 @@
 
         .overlay-text {
             position: fixed;
-            bottom: 120px;
+            bottom: 150px; /* Increased space from the bottom for mobile */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -137,7 +137,7 @@
 
         .ip-bar {
             position: fixed;
-            bottom: 70px;
+            bottom: 100px; /* Ensure it does not overlap with the footer text */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -198,6 +198,9 @@
 
             .menu-toggle {
                 display: block;
+                position: absolute;
+                right: 20px; /* Position toggle button to the right */
+                top: 15px; /* Align with menu bar */
             }
 
             .menu-bar.active .menu-items {
@@ -213,7 +216,7 @@
 
             .overlay-text {
                 font-size: 14px;
-                bottom: 130px;
+                bottom: 120px; /* Ensure it does not collide with IP bar */
                 padding: 8px 16px;
             }
         }
