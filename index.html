@@ -156,7 +156,7 @@
 
         .footer-text {
             position: fixed;
-            bottom: 20px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -180,8 +180,13 @@
                 display: none;
                 flex-direction: column;
                 gap: 10px;
-                width: 100%;
+                width: 200px;
                 margin: 0;
+                position: absolute;
+                top: 50px; /* Adjust as needed */
+                right: 0;
+                background: rgba(0, 0, 0, 0.8);
+                border-radius: 5px;
             }
 
             .menu-items a {
@@ -202,7 +207,7 @@
             .footer-text {
                 font-size: 8px;
                 padding: 4px;
-                bottom: 70px; /* Adjusted to ensure it is above the IP bar */
+                bottom: 0; /* Fixed to the bottom of the page */
                 max-width: calc(100% - 20px);
             }
 
