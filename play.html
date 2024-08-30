@@ -134,12 +134,12 @@
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            margin: 20px auto;
             display: inline-block;
             max-width: 300px;
             text-align: center;
             font-size: 18px;
             transition: background 0.3s, transform 0.3s;
+            margin: 20px auto; /* Centered horizontally */
         }
 
         .ip-bar:hover {
@@ -148,7 +148,7 @@
         }
 
         .footer-text {
-            background: rgba(0, 0, 0, 0.6);
+            background: none; /* No background for footer text */
             color: white;
             padding: 5px;
             text-align: center;
@@ -174,7 +174,7 @@
             .footer-text {
                 font-size: 8px;
                 padding: 4px;
-                bottom: 20px;
+                bottom: 0; /* Fixed bottom position */
             }
 
             .hero-section {
@@ -184,6 +184,7 @@
             .ip-bar {
                 font-size: 14px;
                 padding: 8px 16px;
+                margin: 10px auto; /* Adjusted for mobile */
             }
         }
     </style>
@@ -278,14 +279,26 @@
                     video.addEventListener('error', handleImageLoop);
                     video.addEventListener('ended', handleImageLoop);
                 } else {
-                    // Handle for mobile devices
-                    showFallbackImage('image1'); // Show preload image initially
+                    // For mobile devices, handle only image looping
+                    showFallbackImage('image1');
+                    setInterval(() => {
+                        if (currentState === 'preload') {
+                            showFallbackImage('image2');
+                            currentState = 'postload2';
+                        } else if (currentState === 'postload2') {
+                            showFallbackImage('image3');
+                            currentState = 'postload3';
+                        } else if (currentState === 'postload3') {
+                            showFallbackImage('image1');
+                            currentState = 'preload';
+                        }
+                    }, 5000); // 5 seconds for each image
                 }
             }
 
             checkVideoLoad();
 
-            // Copy IP address to clipboard
+            // Copy IP address to clipboard on click
             ipBar.addEventListener('click', () => {
                 navigator.clipboard.writeText('play.mineverse.in').then(() => {
                     alert('IP Address copied to clipboard!');
