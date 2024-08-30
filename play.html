@@ -114,9 +114,9 @@
             color: white;
             text-align: center;
             padding: 100px 20px;
-            margin-top: 60px; 
-            position: relative; /* Ensure proper stacking */
-            z-index: 1; /* Ensure it is above background images */
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-section h1 {
@@ -141,8 +141,8 @@
             font-size: 18px;
             transition: background 0.3s, transform 0.3s;
             margin: 20px auto; 
-            position: relative; /* Ensure proper stacking */
-            z-index: 1; /* Ensure it is above background images */
+            position: relative;
+            z-index: 1;
         }
 
         .ip-bar:hover {
@@ -162,6 +162,50 @@
             transform: translateX(-50%);
             max-width: calc(100% - 20px);
             box-sizing: border-box;
+        }
+
+        .adventure-session {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            margin: 20px auto;
+            text-align: center;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s;
+        }
+
+        .adventure-session:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .session-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .session-box {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            flex: 1;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .session-box:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .session-box:nth-of-type(1) {
+            margin-right: 10px;
         }
 
         @media (max-width: 768px) {
@@ -209,7 +253,15 @@
             .ip-bar {
                 font-size: 14px;
                 padding: 8px 16px;
-                margin: 10px auto; 
+                margin: 10px auto;
+            }
+
+            .adventure-session, .session-box {
+                margin: 10px 0;
+            }
+
+            .session-container {
+                flex-direction: column;
             }
         }
     </style>
@@ -240,56 +292,59 @@
         </div>
     </div>
 
+    <div class="adventure-session">
+        <h2>Join the Adventure</h2>
+    </div>
+
+    <div class="session-container">
+        <div class="session-box">
+            <h3>For Java</h3>
+            <p>Explore the world of Minecraft Java Edition with our custom server settings and mods!</p>
+        </div>
+        <div class="session-box">
+            <h3>For Bedrock</h3>
+            <p>Join the Minecraft Bedrock Edition community and experience unique crossplay features!</p>
+        </div>
+    </div>
+
     <div class="footer-text">
-        All the assets are from official Minecraft sources. We are not affiliated with Mojang Studios or Microsoft.
+        All the assets are from Official Minecraft Sources. We are not affiliated with Mojang Studios or Microsoft.
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const fallbackImage1 = document.querySelector('.image1');
-            const fallbackImage2 = document.querySelector('.image2');
-            const fallbackImage3 = document.querySelector('.image3');
             const ipBar = document.getElementById('ip-bar');
-            const menuToggle = document.getElementById('menu-toggle');
-            const menuItems = document.querySelector('.menu-items');
             const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-            let currentState = 'preload';
 
             function showFallbackImage(imageClass) {
                 // Hide all images
-                fallbackImage1.style.display = 'none';
-                fallbackImage2.style.display = 'none';
-                fallbackImage3.style.display = 'none';
-
+                document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
                 // Show the specified image
                 document.querySelector(`.${imageClass}`).style.display = 'block';
             }
 
             function handleImageLoop() {
-                if (currentState === 'preload') {
-                    showFallbackImage('image2'); // Show postload2.jpg
-                    currentState = 'postload2';
-                    setTimeout(() => {
-                        showFallbackImage('image3'); // Show postload3.jpg
-                        currentState = 'postload3';
-                        setTimeout(() => {
-                            showFallbackImage('image1'); // Show preload.jpg
-                            currentState = 'preload';
-                        }, 30000); // 30 seconds for postload3 image
-                    }, 30000); // 30 seconds for postload2 image
+                const images = ['image1', 'image2', 'image3'];
+                let index = 0;
+
+                function changeImage() {
+                    showFallbackImage(images[index]);
+                    index = (index + 1) % images.length;
                 }
+
+                changeImage(); // Show the first image initially
+                setInterval(changeImage, 30000); // 30 seconds for each image
             }
 
             function checkImageLoop() {
                 if (isMobile) {
                     // For mobile devices, handle only image looping
                     showFallbackImage('image1');
-                    setInterval(handleImageLoop, 30000); // 30 seconds for each image
+                    handleImageLoop();
                 } else {
                     // For non-mobile devices, handle image looping
                     showFallbackImage('image1');
-                    setInterval(handleImageLoop, 30000); // 30 seconds for each image
+                    handleImageLoop();
                 }
             }
 
@@ -305,6 +360,9 @@
             });
 
             // Toggle menu visibility on mobile
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuItems = document.querySelector('.menu-items');
+
             menuToggle.addEventListener('click', () => {
                 menuItems.classList.toggle('active');
             });
