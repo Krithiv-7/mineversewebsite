@@ -115,6 +115,8 @@
             text-align: center;
             padding: 100px 20px;
             margin-top: 60px; 
+            position: relative; /* Ensure proper stacking */
+            z-index: 1; /* Ensure it is above background images */
         }
 
         .hero-section h1 {
@@ -139,6 +141,8 @@
             font-size: 18px;
             transition: background 0.3s, transform 0.3s;
             margin: 20px auto; 
+            position: relative; /* Ensure proper stacking */
+            z-index: 1; /* Ensure it is above background images */
         }
 
         .ip-bar:hover {
@@ -283,7 +287,7 @@
                     showFallbackImage('image1');
                     setInterval(handleImageLoop, 30000); // 30 seconds for each image
                 } else {
-                    // Optionally, you could handle image looping differently for non-mobile devices
+                    // For non-mobile devices, handle image looping
                     showFallbackImage('image1');
                     setInterval(handleImageLoop, 30000); // 30 seconds for each image
                 }
