@@ -150,16 +150,15 @@
             transition: background 0.3s;
             position: relative; /* Ensure z-index works */
             z-index: 2; /* Ensure it is above the background image */
+            flex: 1; /* Ensure both boxes are equally sized */
         }
 
         .contact-form {
             max-width: 600px;
-            flex: 1;
         }
 
         .social-contact {
-            max-width: 300px;
-            flex: 1;
+            max-width: 600px;
         }
 
         .contact-form h2, .social-contact h2 {
@@ -196,6 +195,7 @@
 
         .social-contact p {
             margin: 10px 0;
+            font-size: 18px;
         }
 
         .social-contact a {
@@ -203,6 +203,7 @@
             text-decoration: none;
             display: block;
             margin: 5px 0;
+            font-size: 20px; /* Increase font size */
             transition: color 0.3s;
         }
 
@@ -334,8 +335,8 @@
             <h2>Connect with Us</h2>
             <p>Follow us on social media or reach out through other channels:</p>
             <a href="https://twitter.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="https://facebook.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
             <a href="https://instagram.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://discord.gg/XYkebzKeeR" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
             <a href="mailto:support@mineverse.in"><i class="fas fa-envelope"></i> Email Us</a>
         </div>
 
