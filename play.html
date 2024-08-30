@@ -54,7 +54,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 2; 
+            z-index: 2;
         }
 
         .logo img {
@@ -283,7 +283,9 @@
                     showFallbackImage('image1');
                     setInterval(handleImageLoop, 30000); // 30 seconds for each image
                 } else {
-                    // Optionally handle non-mobile logic if needed
+                    // Optionally, you could handle image looping differently for non-mobile devices
+                    showFallbackImage('image1');
+                    setInterval(handleImageLoop, 30000); // 30 seconds for each image
                 }
             }
 
