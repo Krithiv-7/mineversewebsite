@@ -144,6 +144,8 @@
             gap: 20px;
             align-items: center;
             padding: 20px;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .adventure-boxes .box {
@@ -155,14 +157,9 @@
             width: 100%;
             max-width: 600px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s;
         }
 
-        .adventure-boxes .box:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .adventure-boxes img {
+        .adventure-boxes .box img {
             max-width: 100%;
             height: auto;
         }
@@ -222,6 +219,11 @@
 
             .adventure-boxes {
                 flex-direction: column;
+                overflow-x: auto; /* Allow horizontal scrolling */
+            }
+
+            .adventure-boxes .box {
+                width: 100%;
             }
 
             .ip-bar {
@@ -292,16 +294,19 @@
             }
 
             function handleImageLoop() {
-                const images = ['image1', 'image2', 'image3'];
-                let index = 0;
-
-                function changeImage() {
-                    showFallbackImage(images[index]);
-                    index = (index + 1) % images.length;
-                }
-
-                changeImage(); // Show the first image initially
-                setInterval(changeImage, 30000); // Change image every 30 seconds
+                let currentState = 'image1';
+                setInterval(() => {
+                    if (currentState === 'image1') {
+                        showFallbackImage('image2');
+                        currentState = 'image2';
+                    } else if (currentState === 'image2') {
+                        showFallbackImage('image3');
+                        currentState = 'image3';
+                    } else {
+                        showFallbackImage('image1');
+                        currentState = 'image1';
+                    }
+                }, 30000); // Change image every 30 seconds
             }
 
             handleImageLoop();
@@ -318,6 +323,12 @@
                 ipBar.style.marginTop = '10px';
                 ipBar.style.textAlign = 'center';
             }
+
+            // Mobile menu toggle
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                const menuItems = document.querySelector('.menu-items');
+                menuItems.classList.toggle('active');
+            });
         });
     </script>
 </body>
