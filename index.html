@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Embark on an epic Minecraft adventure at MineVerse, a vibrant community where the classic game experience is reimagined with crossplay support, allowing players from different platforms to join forces and build, explore, and survive together">
     <title>MineVerse | Join - Survive - Repeat</title>
-    <link rel="icon" href="favicon.png" type="image/png"> <!-- Updated favicon link -->
+    <link rel="icon" href="favicon.png" type="image/png">
     <style>
         body, html {
             margin: 0;
@@ -108,11 +108,13 @@
         .menu-items a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s, background 0.3s;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         .menu-items a:hover {
-            color: #ffcc00;
+            background: rgba(255, 255, 255, 0.2); /* Light background on hover */
         }
 
         .overlay-text {
@@ -137,7 +139,7 @@
 
         .ip-bar {
             position: fixed;
-            bottom: 100px; /* Ensure it does not overlap with the footer text */
+            bottom: 100px; /* Ensure it does not overlap with the footer text on mobile */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -161,10 +163,7 @@
             transform: translateX(-50%);
             color: white;
             font-size: 10px;
-            background: rgba(0, 0, 0, 0.6);
             padding: 5px;
-            border-radius: 5px;
-            z-index: 2;
             text-align: center;
             max-width: calc(100% - 20px);
         }
@@ -210,14 +209,18 @@
             .footer-text {
                 font-size: 8px;
                 padding: 4px;
-                bottom: 0; /* Fixed to the bottom of the page */
+                bottom: 20px; /* Positioned above the IP bar on mobile */
                 max-width: calc(100% - 20px);
             }
 
             .overlay-text {
                 font-size: 14px;
-                bottom: 120px; /* Ensure it does not collide with IP bar */
+                bottom: 150px; /* Ensure it does not collide with IP bar */
                 padding: 8px 16px;
+            }
+
+            .ip-bar {
+                bottom: 100px; /* Positioned above the footer text */
             }
         }
 
@@ -241,7 +244,7 @@
 
             .footer-text {
                 font-size: 12px;
-                bottom: 40px;
+                bottom: 0;
             }
         }
     </style>
