@@ -6,7 +6,6 @@
     <meta name="description" content="Get in touch with the MineVerse team. Contact us for support, feedback, or inquiries about our Minecraft community.">
     <title>MineVerse | Contact</title>
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body, html {
             margin: 0;
@@ -130,42 +129,31 @@
             margin-top: 10px;
         }
 
-        .contact-container {
+        .contact-form-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: flex-start;
             padding: 20px;
-            gap: 20px;
-            flex-wrap: wrap;
-            position: relative; /* Ensure it's above background images */
-            z-index: 1; /* Ensure it's above background images */
+            position: relative;
+            z-index: 1;
         }
 
-        .contact-form, .social-contact {
+        .contact-form, .social-links {
             background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 20px;
+            margin: 10px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             text-align: center;
-            transition: background 0.3s;
-            position: relative; /* Ensure z-index works */
-            z-index: 2; /* Ensure it is above the background image */
-            flex: 1; /* Ensure both boxes are equally sized */
+            max-width: 500px;
+            flex: 1;
         }
 
-        .contact-form {
-            max-width: 600px;
-        }
-
-        .social-contact {
-            max-width: 600px;
-        }
-
-        .contact-form h2, .social-contact h2 {
+        .contact-form h2, .social-links h2 {
             margin-top: 0;
         }
 
-        .contact-form input, .contact-form textarea {
+        .contact-form input, .contact-form textarea, .social-links a {
             width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
@@ -193,28 +181,6 @@
             background: #e6b800;
         }
 
-        .social-contact p {
-            margin: 10px 0;
-            font-size: 18px;
-        }
-
-        .social-contact a {
-            color: #ffcc00;
-            text-decoration: none;
-            display: block;
-            margin: 5px 0;
-            font-size: 20px; /* Increase font size */
-            transition: color 0.3s;
-        }
-
-        .social-contact a:hover {
-            color: #e6b800;
-        }
-
-        .social-contact i {
-            margin-right: 8px;
-        }
-
         .community-button {
             background: #ffcc00;
             color: black;
@@ -229,6 +195,20 @@
 
         .community-button:hover {
             background: #e6b800;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #ffcc00;
+            color: black;
         }
 
         .footer-text {
@@ -290,18 +270,15 @@
                 padding: 80px 10px;
             }
 
-            .contact-container {
+            .contact-form-container {
                 flex-direction: column;
+                align-items: center;
             }
 
-            .contact-form {
-                margin-top: 20px;
-                width: 100%;
-            }
-
-            .social-contact {
-                width: 100%;
-                margin-top: 20px;
+            .contact-form, .social-links {
+                max-width: 100%;
+                margin: 10px 0;
+                padding: 10px;
             }
         }
     </style>
@@ -330,112 +307,31 @@
         <a href="https://community.mineverse.in" class="community-button" target="_blank" rel="noopener noreferrer">Join the Community</a>
     </div>
 
-    <div class="contact-container">
-        <div class="social-contact">
-            <h2>Connect with Us</h2>
-            <p>Follow us on social media or reach out through other channels:</p>
-            <a href="https://twitter.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="https://instagram.com/MineVerse" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://discord.gg/XYkebzKeeR" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
-            <a href="mailto:support@mineverse.in"><i class="fas fa-envelope"></i> Email Us</a>
-        </div>
-
+    <div class="contact-form-container">
         <div class="contact-form">
             <h2>Get in Touch</h2>
-            <form id="contact-form">
-                <input type="text" name="name" id="name" placeholder="Your Name" required>
-                <input type="email" name="email" id="email" placeholder="Your Email" required>
-                <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+            <form action="https://formsubmit.co/krithiv@krithiv.my.id" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
+        </div>
+        <div class="social-links">
+            <h2>Follow Us</h2>
+            <a href="https://twitter.com/mineverse" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://discord.gg/XYkebzKeeR" target="_blank" rel="noopener noreferrer">Discord</a>
+            <a href="https://youtube.com/mineverse" target="_blank" rel="noopener noreferrer">YouTube</a>
         </div>
     </div>
 
     <div class="footer-text">
-        &copy; 2024 MineVerse. All rights reserved. Official Minecraft Sources. We are not affiliated with Mojang Studios or Microsoft.
+        &copy; 2024 MineVerse. All rights reserved.
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const ipBar = document.getElementById('ip-bar');
-            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-            function showFallbackImage(imageClass) {
-                document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
-                document.querySelector(`.${imageClass}`).style.display = 'block';
-            }
-
-            function handleImageLoop() {
-                const images = ['image1', 'image2', 'image3'];
-                let index = 0;
-
-                function changeImage() {
-                    showFallbackImage(images[index]);
-                    index = (index + 1) % images.length;
-                }
-
-                changeImage(); // Show the first image initially
-                setInterval(changeImage, 30000); // 30 seconds for each image
-            }
-
-            function checkImageLoop() {
-                if (isMobile) {
-                    showFallbackImage('image1');
-                    handleImageLoop();
-                } else {
-                    showFallbackImage('image1');
-                    handleImageLoop();
-                }
-            }
-
-            checkImageLoop();
-
-            ipBar.addEventListener('click', () => {
-                navigator.clipboard.writeText('play.mineverse.in').then(() => {
-                    alert('IP Address copied to clipboard!');
-                }).catch(err => {
-                    console.error('Failed to copy IP Address: ', err);
-                });
-            });
-
-            const menuToggle = document.getElementById('menu-toggle');
-            const menuItems = document.querySelector('.menu-items');
-
-            menuToggle.addEventListener('click', () => {
-                menuItems.classList.toggle('active');
-            });
-
-            // Handle form submission
-            document.getElementById('contact-form').addEventListener('submit', (event) => {
-                event.preventDefault();
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-
-                const webhookUrl = 'https://discord.com/api/webhooks/1279038300258173000/IlLDl528z641HzDbYf-ZFajsdrXDTTNbi4GoEYqbQyXBOxMjQKBupfxRcMj-NElVi3Ia';
-
-                const payload = {
-                    content: `**New Contact Form Submission**\n**Name:** ${name}\n**Email:** ${email}\n**Message:**\n${message}`
-                };
-
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Your message has been sent!');
-                    document.getElementById('contact-form').reset();
-                })
-                .catch(error => {
-                    console.error('Error sending message:', error);
-                    alert('Failed to send message. Please try again later.');
-                });
-            });
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu-items').classList.toggle('active');
         });
     </script>
 </body>
