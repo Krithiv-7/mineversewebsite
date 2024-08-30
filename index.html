@@ -32,7 +32,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none; /* Hide by default until loaded */
+            display: none;
             pointer-events: none;
             background: black;
         }
@@ -83,11 +83,19 @@
             align-items: center;
             justify-content: space-between;
             z-index: 2;
+            box-sizing: border-box;
         }
 
         .logo img {
             height: 40px;
             width: auto;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 3;
         }
 
         .menu-items {
@@ -164,17 +172,31 @@
         @media (max-width: 768px) {
             .menu-bar {
                 padding: 10px;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .menu-items {
+                display: none;
+                flex-direction: column;
                 gap: 10px;
-                font-size: 14px;
+                width: 100%;
+                margin: 0;
             }
 
-            .ip-bar {
-                bottom: 70px;
-                font-size: 14px;
-                padding: 8px 16px;
+            .menu-items a {
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu-bar.active .menu-items {
+                display: flex;
             }
 
             .footer-text {
@@ -193,25 +215,25 @@
 
         @media (min-width: 1200px) {
             .menu-bar {
-                padding: 20px 40px; /* Larger padding for very large screens */
+                padding: 20px 40px;
             }
 
             .menu-items {
-                font-size: 20px; /* Larger font size for better readability */
+                font-size: 20px;
             }
 
             .overlay-text {
-                font-size: 24px; /* Larger font size for better visibility */
-                bottom: 150px; /* Adjust position for larger screens */
+                font-size: 24px;
+                bottom: 150px;
             }
 
             .ip-bar {
-                bottom: 100px; /* Adjust position for larger screens */
+                bottom: 100px;
             }
 
             .footer-text {
-                font-size: 12px; /* Larger font size for better readability */
-                bottom: 40px; /* Adjust position for larger screens */
+                font-size: 12px;
+                bottom: 40px;
             }
         }
     </style>
@@ -232,6 +254,7 @@
         <div class="logo">
             <img src="logo.png" alt="MineVerse Logo">
         </div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <div class="menu-items">
             <a href="play.html">Play</a>
             <a href="https://community.mineverse.in" target="_blank" rel="noopener noreferrer">Community</a>
@@ -322,6 +345,10 @@
                     console.error('Failed to copy IP address: ', err);
                 });
             });
+
+            window.toggleMenu = function() {
+                document.querySelector('.menu-bar').classList.toggle('active');
+            };
         });
     </script>
 </body>
