@@ -119,7 +119,7 @@
 
         .overlay-text {
             position: fixed;
-            bottom: 180px; /* Positioned a bit higher from the bottom */
+            bottom: 123px; /* Positioned 3px above IP bar */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -139,7 +139,7 @@
 
         .ip-bar {
             position: fixed;
-            bottom: 120px; /* Positioned a bit higher from the bottom */
+            bottom: 120px; /* Positioned 3px above footer */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -198,8 +198,8 @@
             .menu-toggle {
                 display: block;
                 position: absolute;
-                right: 20px; /* Position toggle button to the right */
-                top: 15px; /* Align with menu bar */
+                right: 20px;
+                top: 15px;
             }
 
             .menu-bar.active .menu-items {
@@ -209,18 +209,18 @@
             .footer-text {
                 font-size: 8px;
                 padding: 4px;
-                bottom: 20px; /* Positioned above the IP bar on mobile */
+                bottom: 10px; /* Positioned above the IP bar on mobile */
                 max-width: calc(100% - 20px);
             }
 
             .overlay-text {
                 font-size: 14px;
-                bottom: 80px; /* Ensure it does not collide with IP bar */
+                bottom: 50px; /* Positioned above IP bar */
                 padding: 8px 16px;
             }
 
             .ip-bar {
-                bottom: 100px; /* Positioned above the footer text */
+                bottom: 30px; /* Positioned above the footer text */
             }
         }
 
@@ -235,7 +235,7 @@
 
             .overlay-text {
                 font-size: 24px;
-                bottom: 180px;
+                bottom: 123px;
             }
 
             .ip-bar {
