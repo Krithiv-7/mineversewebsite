@@ -62,15 +62,6 @@
             background-image: url('postload3.jpg');
         }
 
-        .fade {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .fade-in {
-            opacity: 1;
-        }
-
         .menu-bar {
             position: fixed;
             top: 0;
@@ -119,7 +110,7 @@
 
         .overlay-text {
             position: fixed;
-            bottom: 123px; /* Positioned 3px above IP bar */
+            bottom: 80px; /* Positioned 40px above the IP bar */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -139,7 +130,7 @@
 
         .ip-bar {
             position: fixed;
-            bottom: 120px; /* Positioned 3px above footer */
+            bottom: 40px; /* Positioned above the footer text and below the overlay text */
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
@@ -182,7 +173,7 @@
                 width: 200px;
                 margin: 0;
                 position: absolute;
-                top: 50px; /* Adjust as needed */
+                top: 50px; /* Adjust based on menu toggle button position */
                 right: 0;
                 background: rgba(0, 0, 0, 0.8);
                 border-radius: 5px;
@@ -206,21 +197,20 @@
                 display: flex;
             }
 
-            .footer-text {
-                font-size: 8px;
-                padding: 4px;
-                bottom: 10px; /* Positioned above the IP bar on mobile */
-                max-width: calc(100% - 20px);
-            }
-
             .overlay-text {
                 font-size: 14px;
-                bottom: 50px; /* Positioned above IP bar */
+                bottom: 80px; /* Positioned above the IP bar */
                 padding: 8px 16px;
             }
 
             .ip-bar {
-                bottom: 30px; /* Positioned above the footer text */
+                bottom: 50px; /* Positioned above the footer text */
+            }
+
+            .footer-text {
+                font-size: 8px;
+                padding: 4px;
+                bottom: 10px; /* Positioned above the IP bar on mobile */
             }
         }
 
@@ -235,11 +225,11 @@
 
             .overlay-text {
                 font-size: 24px;
-                bottom: 123px;
+                bottom: 80px; /* Adjusted for larger screens */
             }
 
             .ip-bar {
-                bottom: 120px;
+                bottom: 40px; /* Adjusted for larger screens */
             }
 
             .footer-text {
