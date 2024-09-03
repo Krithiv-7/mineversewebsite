@@ -1,6 +1,5 @@
 <h3 align="center">A Static Minecraft Website Template, where video runs in background on Home Page and with basic features such as Contact, Terms of Services and Privacy Policy pages.</h3>
 
-<h3 align="left">Connect with me:</h3>
 <p align="left">
 </p>
 
