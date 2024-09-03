@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read the comprehensive terms of service for MineVerse. Understand the rules and regulations governing the use of our Minecraft server, community, and Discord integration.">
+    <title>MineVerse | Terms of Service</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            padding-bottom: 40px;
+        }
+
+        .image-fallback {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            display: none;
+            background-color: black;
+        }
+
+        .image1 {
+            background-image: url('preload.jpg');
+        }
+
+        .image2 {
+            background-image: url('postload2.jpg');
+        }
+
+        .image3 {
+            background-image: url('postload3.jpg');
+        }
+
+        .menu-bar {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .menu-items {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .menu-items a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu-items a:hover, .menu-items .active {
+            color: #ffcc00;
+        }
+
+        .menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 3;
+            min-width: 200px;
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .menu-dropdown a:hover {
+            background: #ffcc00;
+            color: black;
+        }
+
+        .menu-bar .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hero-section {
+            background: url('contact-hero.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .terms-container {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+
+        .terms-container h2 {
+            margin-top: 0;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #ccc;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 10px;
+            }
+
+            .terms-container {
+                margin: 10px;
+                padding: 10px;
+            }
+
+            .footer-text {
+                font-size: 8px;
+                padding: 4px;
+                bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image-fallback image1"></div>
+    <div class="image-fallback image2"></div>
+    <div class="image-fallback image3"></div>
+
+    <div class="menu-bar">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="MineVerse Logo">
+        </a>
+        <div class="menu-items">
+            <a href="play.html">Play</a>
+            <a href="https://community.mineverse.in" target="_blank" rel="noopener noreferrer">Community</a>
+            <a href="https://store.mineverse.in" target="_blank" rel="noopener noreferrer">Store</a>
+            <a href="contact.html">Contact</a>
+            <a href="terms.html" class="active">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </div>
+
+    <div class="hero-section">
+        <h1>Terms of Service</h1>
+        <p>Please read our terms of service carefully before using our services.</p>
+    </div>
+
+    <div class="terms-container">
+        <h2>1. Introduction</h2>
+        <p>Welcome to MineVerse! By accessing or using our services, you agree to comply with and be bound by these Terms of Service. If you do not agree with any part of these terms, you must not use our services.</p>
+
+        <h2>2. Acceptance of Terms</h2>
+        <p>By accessing our website or using our services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. These terms apply to all users of our services.</p>
+
+        <h2>3. Changes to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. Any changes will be effective immediately upon posting on our website. It is your responsibility to review these terms periodically for any updates.</p>
+
+        <h2>4. User Responsibilities</h2>
+        <p>As a user, you agree to:</p>
+        <ul>
+            <li>Provide accurate and complete information when creating an account.</li>
+            <li>Maintain the confidentiality of your account credentials.</li>
+            <li>Notify us immediately of any unauthorized use of your account.</li>
+            <li>Abide by all rules and guidelines set forth by MineVerse.</li>
+            <li>Respect other users and refrain from disruptive or harmful behavior.</li>
+        </ul>
+
+        <h2>5. Prohibited Activities</h2>
+        <p>Users are prohibited from engaging in the following activities:</p>
+        <ul>
+            <li>Attempting to hack, alter, or disrupt the MineVerse servers or services.</li>
+            <li>Using cheats, hacks, or other unauthorized software to gain an unfair advantage.</li>
+            <li>Posting or sharing inappropriate or offensive content.</li>
+            <li>Engaging in harassment, bullying, or abusive behavior towards other users.</li>
+            <li>Creating multiple accounts to circumvent bans or other penalties.</li>
+        </ul>
+
+        <h2>6. Content Ownership</h2>
+        <p>All content provided on MineVerse, including but not limited to graphics, text, and logos, is the property of MineVerse or its content suppliers. Unauthorized use of any content may violate copyright, trademark, or other laws.</p>
+
+        <h2>7. Discord Integration</h2>
+        <p>MineVerse utilizes Discord as part of our community engagement. By joining our Discord server, you agree to:</p>
+        <ul>
+            <li>Follow Discord's Community Guidelines and Terms of Service.</li>
+            <li>Behave respectfully towards other members of the community.</li>
+            <li>Not use Discord for spamming or promoting malicious content.</li>
+        </ul>
+        <p>Any content shared within our Discord server is subject to our server rules, and we reserve the right to remove users or content that violates these rules.</p>
+
+        <h2>8. Discord Bots</h2>
+        <p>We use Discord bots to enhance the user experience on our server. By interacting with these bots, you consent to:</p>
+        <ul>
+            <li>Provide the necessary permissions for the bots to function.</li>
+            <li>Not exploit or misuse the bots in any manner.</li>
+            <li>Report any issues or bugs with the bots to our moderation team.</li>
+        </ul>
+
+        <h2>9. Google Analytics and Other Analytics Software</h2>
+        <p>We use Google Analytics and other analytics software to collect data about how our website is used. This data helps us improve our services and enhance user experience. By using our website, you consent to the use of these analytics tools in accordance with their respective privacy policies.</p>
+
+        <h2>10. Server Locations</h2>
+        <p>MineVerse operates Minecraft servers in the following locations: India, USA, Singapore, and Germany. Our servers are designed to provide a stable and enjoyable experience for players from around the world.</p>
+
+        <h2>11. Support for Minecraft Versions</h2>
+        <p>MineVerse is a Minecraft game-based community that supports both Java and Bedrock versions of Minecraft. We also support cracked versions of Minecraft, although all server information is highly secured to ensure a safe and fair gaming experience for all users.</p>
+
+        <h2>12. Limitation of Liability</h2>
+        <p>MineVerse shall not be liable for any indirect, incidental, special, or consequential damages arising from or related to the use of our services. We do not guarantee that our services will be uninterrupted or error-free.</p>
+
+        <h2>13. Termination</h2>
+        <p>We reserve the right to terminate or suspend your access to our services at our sole discretion, without notice, for conduct that we believe violates these Terms of Service or is harmful to other users or the service itself.</p>
+
+        <h2>14. Governing Law</h2>
+        <p>These Terms of Service shall be governed by and construed in accordance with the laws of the jurisdiction in which MineVerse operates, without regard to its conflict of law principles.</p>
+
+        <h2>15. Dispute Resolution</h2>
+        <p>Any disputes arising out of or relating to these Terms of Service or your use of our services will be resolved through binding arbitration in accordance with the rules of the applicable arbitration institution.</p>
+
+        <h2>16. Contact Us</h2>
+        <p>If you have any questions about these Terms of Service, please contact us at <a href="mailto:support@mineverse.in" style="color: #ffcc00;">support@mineverse.in</a>.</p>
+    </div>
+
+    <div class="footer-text">
+        &copy; 2024 MineVerse. All the assets are from official Minecraft sources. We are not affiliated with Mojang Studios or Microsoft. <br>
+        <a href="terms.html">Terms of Service</a> | <a href="privacy.html" class="active">Privacy Policy</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = ['image1', 'image2', 'image3'];
+            let index = 0;
+
+            function showFallbackImage(imageClass) {
+                document.querySelectorAll('.image-fallback').forEach(img => img.style.display = 'none');
+                document.querySelector(`.${imageClass}`).style.display = 'block';
+            }
+
+            function changeImage() {
+                showFallbackImage(images[index]);
+                index = (index + 1) % images.length;
+            }
+
+            changeImage(); // Show the first image initially
+            setInterval(changeImage, 30000); // 30 seconds for each image
+        });
+    </script>
+</body>
+</html>
